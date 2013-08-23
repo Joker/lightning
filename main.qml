@@ -69,10 +69,12 @@ Item {
     }
     Image {
         id: spark
-        anchors.verticalCenterOffset: 45
-        anchors.horizontalCenterOffset: 90
+
+        anchors.verticalCenterOffset: -15
+        anchors.horizontalCenterOffset: -33
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
+
         visible: false
         opacity: 1
         source: "images/spark.png"
@@ -89,15 +91,15 @@ Item {
 
     Image {
         id: k
-
-        height: 150
-        width: 140
-        smooth: true
-
-        x: (parent.width - width) / 2
-        y: (parent.height - height) / 2 + 70
-
         source: "images/k1.png"
+        height: 150; width: 140
+
+        anchors.horizontalCenterOffset: -122
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.verticalCenter: parent.verticalCenter
+
+
+
 
         opacity: 0
         Behavior on opacity { NumberAnimation { duration: 1000; easing { type: Easing.InOutQuad } } }
@@ -106,15 +108,14 @@ Item {
     }
     Image {
         id: d
-
-        height: 150
-        width: 110
-        smooth: true
-
-        x: 120 + (parent.width - width) / 2
-        y: (parent.height - height) / 2 + 70
-
         source: "images/d1.png"
+        height: 150; width: 110
+
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.verticalCenter: parent.verticalCenter
+
+
+
 
         opacity: 0
         Behavior on opacity { NumberAnimation { duration: 1000; easing { type: Easing.InOutQuad } } }
@@ -123,15 +124,14 @@ Item {
     }
     Image {
         id: e
-
-        height: 150
-        width: 120
-        smooth: true
-
-        x: 230 + (parent.width - width) / 2
-        y: (parent.height - height) / 2 + 70
-
         source: "images/e1.png"
+        height: 150; width: 120
+
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.horizontalCenterOffset: 115
+
+
 
         opacity: 0
         Behavior on opacity { NumberAnimation { duration: 1000; easing { type: Easing.InOutQuad } } }
