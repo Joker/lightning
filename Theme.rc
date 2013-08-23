@@ -1,9 +1,9 @@
 [KSplash Theme: Lightning]
 Name = Lightning
-Description = Lightning
+Description = Lightning Splash Screen
 Version = 1.0
 Author = Joker
-Homepage = https://github.com/Joker
+Homepage = https://github.com/Joker/lightning
 
 # Theme behaviour settings.
 Engine = KSplashQML

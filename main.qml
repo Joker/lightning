@@ -1,4 +1,5 @@
 import QtQuick 1.1
+import "letter"
 
 Item {
     id: main
@@ -8,7 +9,7 @@ Item {
 //    width:  1920
 //    height: 1200
     property int stage
-    property string src: "images/lighning2.gif"
+    property string src: "kde1.png"
 
     onStageChanged: {
         if (stage == 1) {
@@ -19,21 +20,20 @@ Item {
             d.opacity = 1
         }
         if (stage == 3) {
-            k.opacity = 0.1
-            d.opacity = 0.1
+            k.opacity = 0.2
+            d.opacity = 0.2
             e.opacity = 1
         }
         if (stage == 4) {
-            k.opacity = 0.2
-            d.opacity = 0.2
-            e.opacity = 0.2
+            k.opacity = 1
+            d.opacity = 0.5
+            e.opacity = 0.1
         }
         if (stage == 5) {
-            k.opacity = 1
-            d.opacity = 1
-            e.opacity = 1
+            sequent.running = true
         }
         if (stage == 6) {
+            src = "kde3.png"
             k.opacity = 0.4
             d.opacity = 0.4
             e.opacity = 0.4
@@ -43,14 +43,30 @@ Item {
         }
     }
 
+    SequentialAnimation {
+        id:sequent
+        running: false
+        ParallelAnimation {
+            NumberAnimation { target: k; property:"opacity"; to: 0; duration: 1000;}
+            NumberAnimation { target: d; property:"opacity"; to: 0; duration: 1000;}
+            NumberAnimation { target: e; property:"opacity"; to: 0; duration: 1000;}
+        }
+
+        ScriptAction    { script: {src = "kde2.png"} }
+        PauseAnimation  { duration: 100 }
+
+        ParallelAnimation {
+            NumberAnimation { target: k; property:"opacity"; to: 1; duration: 1000;}
+            NumberAnimation { target: d; property:"opacity"; to: 1; duration: 1000;}
+            NumberAnimation { target: e; property:"opacity"; to: 1; duration: 1000;}
+        }
+    }
+
     Rectangle {
         id: background
         color: "#000000"
         anchors.fill: parent
     }
-
-    
-
 
     Rectangle {
         id: light_base
@@ -61,7 +77,7 @@ Item {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter:   parent.verticalCenter
 
-        AnimatedImage { id: light; source: src; }
+        AnimatedImage { id: light; source: "lighning.gif"; }
 
         Rectangle {
             id: black
@@ -71,6 +87,7 @@ Item {
             height: parent.height
         }
     }
+
     Image {
         id: spark
 
@@ -81,56 +98,21 @@ Item {
 
         visible: false
         opacity: 1
-        source: "images/spark.png"
+        source: "spark.png"
 
         SequentialAnimation {
             id: run
-            running: true
-            NumberAnimation { target: spark; property: "opacity"; to: 0; duration: 5 }
+            running: false
+            PauseAnimation  { duration: 100 }
+            NumberAnimation { target: spark; property: "opacity"; from:1; to: 0; duration: 5 }
             PauseAnimation  { duration: 200 }
-            NumberAnimation { target: spark; property: "opacity"; to: 1; duration: 20 }
+            NumberAnimation { target: spark; property: "opacity"; from:0; to: 1; duration: 20 }
         }
     }
 
-
-    Image {
-        id: k
-        source: "images/k.png"
-        height: 150; width: 140
-
-        anchors.horizontalCenterOffset: -122
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenter:   parent.verticalCenter
-
-        opacity: 0
-        Behavior on opacity { NumberAnimation { duration: 1000; easing { type: Easing.InOutBounce } } }
-    }
-    Image {
-        id: d
-        source: "images/d.png"
-        height: 150; width: 110
-
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenter:   parent.verticalCenter
-
-        opacity: 0
-        Behavior on opacity { NumberAnimation { duration: 1000; easing { type: Easing.InOutBounce } } }
-
-
-    }
-    Image {
-        id: e
-        source: "images/e.png"
-        height: 150; width: 120
-
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenter:   parent.verticalCenter
-        anchors.horizontalCenterOffset: 115
-
-        opacity: 0
-        Behavior on opacity { NumberAnimation { duration: 1000; easing { type: Easing.InOutBounce } } }
-    }
-
+    Letter { id:k; width: 140; lx: -21;  anchors.horizontalCenterOffset: -122 }
+    Letter { id:d; width: 110; lx: -170; }
+    Letter { id:e; width: 120; lx: -298; anchors.horizontalCenterOffset:  115 }
 
 
     states: [
