@@ -24,16 +24,19 @@ Item {
             e.opacity = 1
         }
         if (stage == 4) {
+            k.opacity = 0.2
+            d.opacity = 0.2
+            e.opacity = 0.2
+        }
+        if (stage == 5) {
             k.opacity = 1
             d.opacity = 1
             e.opacity = 1
         }
-        if (stage == 5) {
-            k.opacity = 0.5
-            d.opacity = 0.5
-            e.opacity = 0.5
-        }
         if (stage == 6) {
+            k.opacity = 0.4
+            d.opacity = 0.4
+            e.opacity = 0.4
             black.visible = true
             spark.visible = true
             run.running   = true
@@ -100,9 +103,7 @@ Item {
         anchors.verticalCenter:   parent.verticalCenter
 
         opacity: 0
-        Behavior on opacity { NumberAnimation { duration: 1000; easing { type: Easing.InOutQuad } } }
-
-
+        Behavior on opacity { NumberAnimation { duration: 1000; easing { type: Easing.InOutBounce } } }
     }
     Image {
         id: d
@@ -113,7 +114,7 @@ Item {
         anchors.verticalCenter:   parent.verticalCenter
 
         opacity: 0
-        Behavior on opacity { NumberAnimation { duration: 1000; easing { type: Easing.InOutQuad } } }
+        Behavior on opacity { NumberAnimation { duration: 1000; easing { type: Easing.InOutBounce } } }
 
 
     }
@@ -127,7 +128,7 @@ Item {
         anchors.horizontalCenterOffset: 115
 
         opacity: 0
-        Behavior on opacity { NumberAnimation { duration: 1000; easing { type: Easing.InOutQuad } } }
+        Behavior on opacity { NumberAnimation { duration: 1000; easing { type: Easing.InOutBounce } } }
     }
 
 
