@@ -3,10 +3,10 @@ import QtQuick 1.1
 Item {
     id: main
 
-//    width:  screenSize.width
-//    height: screenSize.height
-    width:  1920
-    height: 1200
+    width:  screenSize.width
+    height: screenSize.height
+//    width:  1920
+//    height: 1200
     property int stage
     property string src: "images/lighning2.gif"
 
@@ -15,12 +15,12 @@ Item {
             k.opacity = 1
         }
         if (stage == 2) {
-            k.opacity = 0.2
+            k.opacity = 0.1
             d.opacity = 1
         }
         if (stage == 3) {
-            k.opacity = 0.2
-            d.opacity = 0.2
+            k.opacity = 0.1
+            d.opacity = 0.1
             e.opacity = 1
         }
         if (stage == 4) {
@@ -51,11 +51,12 @@ Item {
 
     Rectangle {
         id: light_base
-        width: light.width;
-        height: light.height
+        width: light.width; height: light.height
 
+        anchors.verticalCenterOffset:   -70
+        anchors.horizontalCenterOffset: -120
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenter: parent.verticalCenter
+        anchors.verticalCenter:   parent.verticalCenter
 
         AnimatedImage { id: light; source: src; }
 
@@ -70,10 +71,10 @@ Item {
     Image {
         id: spark
 
-        anchors.verticalCenterOffset: -15
+        anchors.verticalCenterOffset:   -15
         anchors.horizontalCenterOffset: -33
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenter: parent.verticalCenter
+        anchors.verticalCenter:   parent.verticalCenter
 
         visible: false
         opacity: 1
@@ -83,23 +84,20 @@ Item {
             id: run
             running: true
             NumberAnimation { target: spark; property: "opacity"; to: 0; duration: 5 }
-            PauseAnimation { duration: 200 }
-            NumberAnimation { target: spark; property: "opacity"; to: 1; duration: 10 }
+            PauseAnimation  { duration: 200 }
+            NumberAnimation { target: spark; property: "opacity"; to: 1; duration: 20 }
         }
     }
 
 
     Image {
         id: k
-        source: "images/k1.png"
+        source: "images/k.png"
         height: 150; width: 140
 
         anchors.horizontalCenterOffset: -122
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenter: parent.verticalCenter
-
-
-
+        anchors.verticalCenter:   parent.verticalCenter
 
         opacity: 0
         Behavior on opacity { NumberAnimation { duration: 1000; easing { type: Easing.InOutQuad } } }
@@ -108,14 +106,11 @@ Item {
     }
     Image {
         id: d
-        source: "images/d1.png"
+        source: "images/d.png"
         height: 150; width: 110
 
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenter: parent.verticalCenter
-
-
-
+        anchors.verticalCenter:   parent.verticalCenter
 
         opacity: 0
         Behavior on opacity { NumberAnimation { duration: 1000; easing { type: Easing.InOutQuad } } }
@@ -124,19 +119,15 @@ Item {
     }
     Image {
         id: e
-        source: "images/e1.png"
+        source: "images/e.png"
         height: 150; width: 120
 
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenter: parent.verticalCenter
+        anchors.verticalCenter:   parent.verticalCenter
         anchors.horizontalCenterOffset: 115
-
-
 
         opacity: 0
         Behavior on opacity { NumberAnimation { duration: 1000; easing { type: Easing.InOutQuad } } }
-
-
     }
 
 
@@ -148,7 +139,7 @@ Item {
             onCompleted: {light.mirror = !light.mirror;}
         },
         State {
-            name: "nj"
+            name: "new"
             when: light.currentFrame == 0
             onCompleted: {light_base.anchors.horizontalCenterOffset += 50; light_base.anchors.verticalCenterOffset += 20}
         }
